@@ -1,6 +1,14 @@
 import { BiEdit,BiTrashAlt } from "react-icons/bi"; 
 import data from '../database/data.json'
+import { getUser } from "../../../lib/helper";
+import { useQuery } from "react-query";
+
+
 export default function Table() {
+
+  useQuery('users',getUser) 
+  // getUser().then( res=> console.log(res))
+  
   return (
     <table className="min-w-full table-auto">
       <thead>
@@ -43,7 +51,7 @@ function Tr({id,name,avtar,email,salary,date,status} ){
 
     <tr className="bg-gray-50 text-center">
     <td className="px-16 py-2 flex flex-row items-center">
-      <img src={avtar || '#'} alt="" />
+      <img src={avtar || '#'} className="h-8 w-8 rounded-full object-cover" alt="" />
       <span className="text-center ml-2 font-semibold">{name || 'Unknown'}</span>
     </td>    
     <td className="px-16 py-2">
